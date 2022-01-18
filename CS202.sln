@@ -5,6 +5,14 @@ VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CS202", "CS202\CS202.vcxproj", "{E99273A3-26A4-471E-B318-F3E0175DA618}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Homework", "Homework", "{728E1F48-A127-49C2-AB12-1DA8B045C10C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HW0", "HW0", "{BF821DB8-D22F-4C76-A9B8-31F7C91BC45A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "temperature", "temperature\temperature.vcxproj", "{AE195618-FFBD-413E-A122-165C20C453CC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "beeMovieScriptPrinter", "Bee Movie Script printer\Bee Movie Script printer.vcxproj", "{D18297B2-0F79-4CBA-8795-5A05EF089041}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,9 +29,30 @@ Global
 		{E99273A3-26A4-471E-B318-F3E0175DA618}.Release|x64.Build.0 = Release|x64
 		{E99273A3-26A4-471E-B318-F3E0175DA618}.Release|x86.ActiveCfg = Release|Win32
 		{E99273A3-26A4-471E-B318-F3E0175DA618}.Release|x86.Build.0 = Release|Win32
+		{AE195618-FFBD-413E-A122-165C20C453CC}.Debug|x64.ActiveCfg = Debug|x64
+		{AE195618-FFBD-413E-A122-165C20C453CC}.Debug|x64.Build.0 = Debug|x64
+		{AE195618-FFBD-413E-A122-165C20C453CC}.Debug|x86.ActiveCfg = Debug|Win32
+		{AE195618-FFBD-413E-A122-165C20C453CC}.Debug|x86.Build.0 = Debug|Win32
+		{AE195618-FFBD-413E-A122-165C20C453CC}.Release|x64.ActiveCfg = Release|x64
+		{AE195618-FFBD-413E-A122-165C20C453CC}.Release|x64.Build.0 = Release|x64
+		{AE195618-FFBD-413E-A122-165C20C453CC}.Release|x86.ActiveCfg = Release|Win32
+		{AE195618-FFBD-413E-A122-165C20C453CC}.Release|x86.Build.0 = Release|Win32
+		{D18297B2-0F79-4CBA-8795-5A05EF089041}.Debug|x64.ActiveCfg = Debug|x64
+		{D18297B2-0F79-4CBA-8795-5A05EF089041}.Debug|x64.Build.0 = Debug|x64
+		{D18297B2-0F79-4CBA-8795-5A05EF089041}.Debug|x86.ActiveCfg = Debug|Win32
+		{D18297B2-0F79-4CBA-8795-5A05EF089041}.Debug|x86.Build.0 = Debug|Win32
+		{D18297B2-0F79-4CBA-8795-5A05EF089041}.Release|x64.ActiveCfg = Release|x64
+		{D18297B2-0F79-4CBA-8795-5A05EF089041}.Release|x64.Build.0 = Release|x64
+		{D18297B2-0F79-4CBA-8795-5A05EF089041}.Release|x86.ActiveCfg = Release|Win32
+		{D18297B2-0F79-4CBA-8795-5A05EF089041}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BF821DB8-D22F-4C76-A9B8-31F7C91BC45A} = {728E1F48-A127-49C2-AB12-1DA8B045C10C}
+		{AE195618-FFBD-413E-A122-165C20C453CC} = {BF821DB8-D22F-4C76-A9B8-31F7C91BC45A}
+		{D18297B2-0F79-4CBA-8795-5A05EF089041} = {BF821DB8-D22F-4C76-A9B8-31F7C91BC45A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11A77A0E-9478-4ACA-94B4-6DD598F7D4C6}
