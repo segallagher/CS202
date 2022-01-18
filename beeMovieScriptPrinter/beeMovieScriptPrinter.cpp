@@ -3,8 +3,9 @@
 #include <vector>
 #include <string>
 #include <sstream>
-#include<chrono>
-#include<thread>
+#include <chrono>
+#include <thread>
+#include <stdlib.h>
 
 using std::ifstream;
 using std::vector;
@@ -15,7 +16,7 @@ vector<string> returnScriptVector(const string fileName) {
 	ifstream file(fileName);
 
 	if (!file.is_open()) {
-		vector<string> error{"-1"};
+		vector<string> error{"Error opening " + fileName};
 		return error;
 	}
 	
@@ -41,8 +42,14 @@ void printScript(const vector<string>& script,const int & waitTime) {
 
 
 
-int main()
+int main(int argc, char* argv[])
 {
+	std::cout << argc << std::endl;
 	vector<string> output = returnScriptVector("script.txt");
-	printScript(output, 1);
+	if (argc == 1) {
+		printScript(output, 1);
+	}
+	else if (argc == 2) {
+		printScript(output, strtol(argv[1],NULL ,10));
+	}
 }

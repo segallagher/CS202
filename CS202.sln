@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HW0", "HW0", "{BF821DB8-D22
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "temperature", "temperature\temperature.vcxproj", "{AE195618-FFBD-413E-A122-165C20C453CC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "beeMovieScriptPrinter", "Bee Movie Script printer\Bee Movie Script printer.vcxproj", "{D18297B2-0F79-4CBA-8795-5A05EF089041}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "beeMovieScriptPrinter", "beeMovieScriptPrinter\Bee Movie Script printer.vcxproj", "{D18297B2-0F79-4CBA-8795-5A05EF089041}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
