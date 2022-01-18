@@ -44,7 +44,6 @@ void printScript(const vector<string>& script,const int & waitTime) {
 
 int main(int argc, char* argv[])
 {
-	std::cout << argc << std::endl;
 	vector<string> output = returnScriptVector("script.txt");
 	if (argc == 1) {
 		printScript(output, 1);
