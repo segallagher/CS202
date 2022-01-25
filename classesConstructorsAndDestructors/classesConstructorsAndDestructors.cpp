@@ -1,8 +1,9 @@
 
 
 #include <iostream>
+#include "MyClass.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	MyClass guh(8);
 }
