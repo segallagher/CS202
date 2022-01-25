@@ -12,10 +12,14 @@ MyClass::MyClass(const int& h) {
 	_num = h;
 }
 
+MyClass::~MyClass() {
+
+}
+
 void MyClass::SetNum(const int &num) {
 	_num = num;
 }
 
-int MyClass::ReadNum() {
+const int MyClass::ReadNum() {
 	return _num;
 }

@@ -9,7 +9,7 @@ public:
 	MyClass(const MyClass& g);
 	MyClass(const int& h);
 	void SetNum(const int &num);
-	int ReadNum();
+	const int ReadNum();
 	~MyClass();
 
 private:
