@@ -1,17 +1,21 @@
 #include "Stopwatch.h"
 
+Stopwatch::Stopwatch() {
+
+}
+
 void Stopwatch::start() {
-	_startTime = std::chrono::system_clock::now;
+	_startTime = std::chrono::system_clock::now();
 }
 
 void Stopwatch::stop() {
-
+	_stopTime = std::chrono::system_clock::now();
 }
 
 double Stopwatch::readSeconds() {
-
+	return std::chrono::duration_cast<std::chrono::milliseconds> (_stopTime - _startTime).count()/1000.0;
 }
 
-double Stopwatch::readMilliseconds() {
-
+std::chrono::milliseconds Stopwatch::readMilliseconds() {
+	return std::chrono::duration_cast<std::chrono::milliseconds> (_stopTime - _startTime);
 }

@@ -10,7 +10,7 @@ public:
 	void start();
 	void stop();
 	double readSeconds();
-	double readMilliseconds();
+	std::chrono::milliseconds readMilliseconds();
 
 private:
 	std::chrono::time_point<std::chrono::system_clock> _startTime;
