@@ -11,6 +11,7 @@ public:
 	void stop();
 	double readSeconds();
 	std::chrono::milliseconds readMilliseconds();
+	std::chrono::nanoseconds readNanoseconds();
 
 private:
 	std::chrono::time_point<std::chrono::system_clock> _startTime;

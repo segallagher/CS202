@@ -19,3 +19,7 @@ double Stopwatch::readSeconds() {
 std::chrono::milliseconds Stopwatch::readMilliseconds() {
 	return std::chrono::duration_cast<std::chrono::milliseconds> (_stopTime - _startTime);
 }
+
+std::chrono::nanoseconds Stopwatch::readNanoseconds() {
+	return std::chrono::duration_cast<std::chrono::nanoseconds> (_stopTime - _startTime);
+}
