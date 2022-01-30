@@ -11,11 +11,13 @@ public:
 	void stop();
 	double readSeconds();
 	std::chrono::milliseconds readMilliseconds();
+	std::chrono::microseconds readMicroseconds();
 	std::chrono::nanoseconds readNanoseconds();
+	int readSystemTime();
 
 private:
-	std::chrono::time_point<std::chrono::system_clock> _startTime;
-	std::chrono::time_point<std::chrono::system_clock> _stopTime;
+	std::chrono::time_point<std::chrono::high_resolution_clock> _startTime;
+	std::chrono::time_point<std::chrono::high_resolution_clock> _stopTime;
 
 };
 

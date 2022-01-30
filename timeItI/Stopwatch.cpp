@@ -5,11 +5,11 @@ Stopwatch::Stopwatch() {
 }
 
 void Stopwatch::start() {
-	_startTime = std::chrono::system_clock::now();
+	_startTime = std::chrono::high_resolution_clock::now();
 }
 
 void Stopwatch::stop() {
-	_stopTime = std::chrono::system_clock::now();
+	_stopTime = std::chrono::high_resolution_clock::now();
 }
 
 double Stopwatch::readSeconds() {
@@ -22,4 +22,12 @@ std::chrono::milliseconds Stopwatch::readMilliseconds() {
 
 std::chrono::nanoseconds Stopwatch::readNanoseconds() {
 	return std::chrono::duration_cast<std::chrono::nanoseconds> (_stopTime - _startTime);
+}
+
+std::chrono::microseconds Stopwatch::readMicroseconds() {
+	return std::chrono::duration_cast<std::chrono::microseconds> (_stopTime - _startTime);
+}
+
+int Stopwatch::readSystemTime() {
+	return (_stopTime - _startTime).count();
 }
