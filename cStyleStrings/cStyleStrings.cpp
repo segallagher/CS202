@@ -3,8 +3,10 @@
 
 #include <iostream>
 
-char* strdup(const char*) {
+char* Mystrdup(const char* d) {
+    char* ego = new char [strlen(d)+1];
 
+    return ego;
 }
 
 char* findx(const char* s, const char* x) {
@@ -13,5 +15,6 @@ char* findx(const char* s, const char* x) {
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    const char *da= "Goobla";
+    std::cout << *Mystrdup(da) << std::endl;
 }
