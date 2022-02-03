@@ -2,11 +2,12 @@
 //
 
 #include <iostream>
+#include <string>
 
-char* Mystrdup(const char* d) {
-    char* ego = new char [strlen(d)+1];
-
-    return ego;
+const char* Mystrdup(const char* d) {
+    std::string str = d;
+    const char* m = str.c_str();
+    return m;
 }
 
 char* findx(const char* s, const char* x) {
@@ -16,5 +17,7 @@ char* findx(const char* s, const char* x) {
 int main()
 {
     const char *da= "Goobla";
-    std::cout << *Mystrdup(da) << std::endl;
+    std::cout << da << std::endl;
+    const char* ee = Mystrdup(da);
+    std::cout << ee[0] << std::endl;
 }
