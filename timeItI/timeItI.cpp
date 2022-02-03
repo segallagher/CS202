@@ -3,6 +3,7 @@
 #include "Stopwatch.h"
 #include <random>
 #include <algorithm>
+#include <iomanip>
 
 std::vector<int> runTests(int & size) {
 	std::cout << "--Size-" << size << "--" << std::endl;
@@ -71,11 +72,16 @@ int main()
 {
 	std::vector<int> allAverageResults;
 	//1000000000
-	for (int size = 10; size <= 100000; size = size * 10) {
+	for (int size = 10; size <= 1000000000; size = size * 10) {
 		std::vector<int> results = runTests(size);
 		allAverageResults.push_back(results[0]);
 		allAverageResults.push_back(results[1]);
 	}
-
+	std::cout << std::setw(15) << "\t\tLinear " << "\tBinary (Microseconds)" << std::endl;
+	int size = 1;
+	for (int i = 0; i < 9;i++) {
+		size = size * 10;
+		std::cout << std::setw(10) << size << std::setw(10) << allAverageResults.at(2 * i) << std::setw(10) << allAverageResults.at(2 * i + 1) << std::endl;
+	}
 	
 }
