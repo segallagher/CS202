@@ -3,6 +3,17 @@ using std::ifstream;
 using std::ofstream;
 #include "caveJunction.h"
 
+void writeCaveFile(map<string, CaveJunction>& caveSystem,const string& fileName) {
+	ofstream file(fileName,std::ios::out | std::ios::binary);
+	if (!file) {
+		std::cout << "Error opening " << fileName << std::endl;
+	}
+	for (auto n : caveSystem) {
+		//file << n.first << " " << n.second << std::endl;
+		file.write(reinterpret_cast<const char*>(n.first.c_str()),sizeof(string));
+	}
+}
+
 void readCave() {
 
 }
@@ -30,8 +41,6 @@ int main()
 		std::pair<string,CaveJunction>("3",CaveJunction("","2","4")),
 		std::pair<string,CaveJunction>("4",CaveJunction("1","3","2")),
 	};
-	move(currentLocation, previousLocation, caveSystem);
-	move(currentLocation, previousLocation, caveSystem);
-	move(currentLocation, previousLocation, caveSystem);
-	move(currentLocation, previousLocation, caveSystem);
+	writeCaveFile(caveSystem, "joe.txt");
+
 }
