@@ -4,15 +4,16 @@ CaveJunction::CaveJunction(const string& d1, const string& d2, const string& d3)
 	_connections = std::vector<string>{ d1, d2, d3 };
 }
 
-string CaveJunction::printOptions(const map<string, CaveJunction>& caveSystem, const string& currentLocation, const string& previousLocation){
+string CaveJunction::printOptions(const map<string, CaveJunction>& caveSystem, const string& currentLocation, const string& previousLocation) {
+	std::cout << "Current Location: " << currentLocation << std::endl;
 	std::vector<string> cave = caveSystem.at(currentLocation)._connections;
-	string left,right,back;
+	string left, right, back;
 	for (auto i = 0; i < 3; i++) {
 		if (previousLocation == cave.at(i)) {
 			switch (i)
 			{
 			case 0:
-				back = cave.at(i);left = cave.at(i + 1);right = cave.at(i + 2); break;
+				back = cave.at(i); left = cave.at(i + 1); right = cave.at(i + 2); break;
 			case 1:
 				back = cave.at(i); left = cave.at(i + 1); right = cave.at(i - 1); break;
 			case 2:
@@ -21,24 +22,29 @@ string CaveJunction::printOptions(const map<string, CaveJunction>& caveSystem, c
 				break;
 			}
 		}
-		
+
 	}
-	std::cout << "1) Go left to " << left << std::endl;
-	std::cout << "2) Go Right to " << right << std::endl;
-	std::cout << "3) Go Back to " << back << std::endl;
+	if (left != ""){
+		std::cout << "- Go left to " << left << std::endl;
+	}
+	if (right != "") {
+		std::cout << "- Go Right to " << right << std::endl;
+	}
+	std::cout << "- Go Back to " << back << std::endl;
 	std::cout << "Enter Here: ";
 	string line;
+	string lowerLine;
 	std::getline(std::cin, line);
 	for (auto n : line) {
-		tolower(n);
+		lowerLine.push_back(char(std::tolower(n)));
 	}
-	if (line == "1" || line == "left" || line == left) {
+	if (lowerLine == "left" || lowerLine == left) {
 		return left;
 	}
-	else if (line == "2" || line == "right" || line == right) {
+	else if (lowerLine == "right" || lowerLine == right) {
 		return right;
 	}
-	else if (line == "3" || line == "back" || line == back) {
+	else if (lowerLine == "back" || lowerLine == back) {
 		return back;
 	}
 	else {

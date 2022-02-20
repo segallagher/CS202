@@ -25,10 +25,13 @@ int main()
 	string currentLocation = "1";
 	//CaveJunction names must be all lower case
 	map<string, CaveJunction> caveSystem{
-		std::pair<string,CaveJunction>("1",CaveJunction("2","3","4")),
+		std::pair<string,CaveJunction>("1",CaveJunction("2","","4")),
 		std::pair<string,CaveJunction>("2",CaveJunction("1","3","4")),
-		std::pair<string,CaveJunction>("3",CaveJunction("1","2","4")),
+		std::pair<string,CaveJunction>("3",CaveJunction("","2","4")),
 		std::pair<string,CaveJunction>("4",CaveJunction("1","3","2")),
 	};
+	move(currentLocation, previousLocation, caveSystem);
+	move(currentLocation, previousLocation, caveSystem);
+	move(currentLocation, previousLocation, caveSystem);
 	move(currentLocation, previousLocation, caveSystem);
 }
