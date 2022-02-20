@@ -49,6 +49,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab6", "Lab6\Lab6.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "memoryLayout", "memoryLayout\memoryLayout.vcxproj", "{837AB79C-FDC5-41EA-850D-240081CF067C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "spelunkingInC++", "spelunkingInC++\spelunkingInC++.vcxproj", "{A882F615-BFF8-478D-984A-3C980062CF01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -161,6 +163,14 @@ Global
 		{837AB79C-FDC5-41EA-850D-240081CF067C}.Release|x64.Build.0 = Release|x64
 		{837AB79C-FDC5-41EA-850D-240081CF067C}.Release|x86.ActiveCfg = Release|Win32
 		{837AB79C-FDC5-41EA-850D-240081CF067C}.Release|x86.Build.0 = Release|Win32
+		{A882F615-BFF8-478D-984A-3C980062CF01}.Debug|x64.ActiveCfg = Debug|x64
+		{A882F615-BFF8-478D-984A-3C980062CF01}.Debug|x64.Build.0 = Debug|x64
+		{A882F615-BFF8-478D-984A-3C980062CF01}.Debug|x86.ActiveCfg = Debug|Win32
+		{A882F615-BFF8-478D-984A-3C980062CF01}.Debug|x86.Build.0 = Debug|Win32
+		{A882F615-BFF8-478D-984A-3C980062CF01}.Release|x64.ActiveCfg = Release|x64
+		{A882F615-BFF8-478D-984A-3C980062CF01}.Release|x64.Build.0 = Release|x64
+		{A882F615-BFF8-478D-984A-3C980062CF01}.Release|x86.ActiveCfg = Release|Win32
+		{A882F615-BFF8-478D-984A-3C980062CF01}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -186,6 +196,7 @@ Global
 		{36F98CF5-1546-405D-9A69-5127F2799FD4} = {69D666C1-3CEB-4283-8D60-C253CBF58442}
 		{7E6B29A7-22F9-47AC-B63B-AEF885FDAE8E} = {36F98CF5-1546-405D-9A69-5127F2799FD4}
 		{837AB79C-FDC5-41EA-850D-240081CF067C} = {6FC83553-455D-4E85-86D2-014731797DC4}
+		{A882F615-BFF8-478D-984A-3C980062CF01} = {6FC83553-455D-4E85-86D2-014731797DC4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11A77A0E-9478-4ACA-94B4-6DD598F7D4C6}
