@@ -2,20 +2,42 @@
 using std::ifstream;
 using std::ofstream;
 #include "caveJunction.h"
+#include <sstream>
 
 void writeCaveFile(map<string, CaveJunction>& caveSystem,const string& fileName) {
-	ofstream file(fileName,std::ios::out | std::ios::binary);
+	ofstream file(fileName,std::ios::out);
 	if (!file) {
 		std::cout << "Error opening " << fileName << std::endl;
 	}
+	string delim = ",";
 	for (auto n : caveSystem) {
-		//file << n.first << " " << n.second << std::endl;
-		file.write(reinterpret_cast<const char*>(n.first.c_str()),sizeof(string));
+		file << n.first << " " << n.second << std::endl;
 	}
 }
 
-void readCave() {
+map<string,CaveJunction> readCaveFile(const string & fileName) {
+	ifstream file(fileName,std::ios::in);
+	if (!file) {
+		std::cout << "Error opening " << fileName << std::endl;
+	}
+	map<string, CaveJunction> caveSystem;
+	string line;
 
+	while (!file.eof()) {
+		std::getline(file, line);
+		std::stringstream intermediate(line);
+		std::vector<string> tokens;
+		string k;
+
+		while (std::getline(intermediate, k, ' ')) {
+			tokens.push_back(k);
+		}
+		if (tokens.size() == 0) {
+			break;
+		}
+		caveSystem.insert(std::pair<string, CaveJunction>(tokens[0],CaveJunction(tokens[1],tokens[2],tokens[3])));
+	}
+	return caveSystem;
 }
 
 void move(string& currentLocation, string & previousLocation, map<string,CaveJunction> & caveSystem) {
@@ -42,5 +64,5 @@ int main()
 		std::pair<string,CaveJunction>("4",CaveJunction("1","3","2")),
 	};
 	writeCaveFile(caveSystem, "joe.txt");
-
+	auto caveSystem2 = readCaveFile("joe.txt");
 }
