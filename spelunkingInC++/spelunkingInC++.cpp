@@ -12,7 +12,7 @@ void writeCaveFile(CaveSystem& caveSystem,const string& fileName) {
 	}
 	string delim = ",";
 	for (auto n : caveSystem.returnCave()) {
-		file << n.first << " " << n.second << std::endl;
+		file << n.first << n.second << std::endl;
 	}
 }
 
@@ -30,7 +30,7 @@ map<string,CaveJunction> readCaveFile(const string & fileName) {
 		std::vector<string> tokens;
 		string k;
 
-		while (std::getline(intermediate, k, ' ')) {
+		while (std::getline(intermediate, k, ',')) {
 			tokens.push_back(k);
 		}
 		if (tokens.size() == 0) {
@@ -40,7 +40,7 @@ map<string,CaveJunction> readCaveFile(const string & fileName) {
 	}
 	return caveSystem;
 }
-
+#if 0
 void move(string& currentLocation, string & previousLocation, map<string,CaveJunction> & caveSystem) {
 	string direction = caveSystem.at(currentLocation).printOptions(caveSystem, currentLocation, previousLocation);
 	if (direction == "") {
@@ -52,7 +52,7 @@ void move(string& currentLocation, string & previousLocation, map<string,CaveJun
 	}
 	return;
 }
-
+#endif
 int main()
 {
 	string previousLocation = "2";
@@ -64,8 +64,11 @@ int main()
 		std::pair<string,CaveJunction>("3",CaveJunction("","2","4")),
 		std::pair<string,CaveJunction>("4",CaveJunction("1","3","2")),
 	};
-	CaveSystem caveSystem(caveSystemBase);
+	CaveSystem caveSystem(caveSystemBase,currentLocation,previousLocation);
 	std::cout << caveSystem << std::endl;
 	writeCaveFile(caveSystem, "joe.txt");
-	auto caveSystem2 = readCaveFile("joe.txt");
+	map<string,CaveJunction> a = readCaveFile("joe.txt");
+	CaveSystem caveSystem2(a,currentLocation,previousLocation);
+	std::cout << caveSystem2 << std::endl;
+	caveSystem2.move();
 }
