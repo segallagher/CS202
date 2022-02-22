@@ -140,10 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="caveJunction.cpp" />
+    <ClCompile Include="CaveSystem.cpp" />
     <ClCompile Include="spelunkingInC++.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="caveJunction.h" />
+    <ClInclude Include="CaveSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

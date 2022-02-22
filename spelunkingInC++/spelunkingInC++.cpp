@@ -2,15 +2,16 @@
 using std::ifstream;
 using std::ofstream;
 #include "caveJunction.h"
+#include "CaveSystem.h"
 #include <sstream>
 
-void writeCaveFile(map<string, CaveJunction>& caveSystem,const string& fileName) {
+void writeCaveFile(CaveSystem& caveSystem,const string& fileName) {
 	ofstream file(fileName,std::ios::out);
 	if (!file) {
 		std::cout << "Error opening " << fileName << std::endl;
 	}
 	string delim = ",";
-	for (auto n : caveSystem) {
+	for (auto n : caveSystem.returnCave()) {
 		file << n.first << " " << n.second << std::endl;
 	}
 }
@@ -57,12 +58,14 @@ int main()
 	string previousLocation = "2";
 	string currentLocation = "1";
 	//CaveJunction names must be all lower case
-	map<string, CaveJunction> caveSystem{
+	map<string, CaveJunction> caveSystemBase{
 		std::pair<string,CaveJunction>("1",CaveJunction("2","","4")),
 		std::pair<string,CaveJunction>("2",CaveJunction("1","3","4")),
 		std::pair<string,CaveJunction>("3",CaveJunction("","2","4")),
 		std::pair<string,CaveJunction>("4",CaveJunction("1","3","2")),
 	};
+	CaveSystem caveSystem(caveSystemBase);
+	std::cout << caveSystem << std::endl;
 	writeCaveFile(caveSystem, "joe.txt");
 	auto caveSystem2 = readCaveFile("joe.txt");
 }

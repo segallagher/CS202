@@ -21,9 +21,15 @@
     <ClCompile Include="caveJunction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CaveSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="caveJunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CaveSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
