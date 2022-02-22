@@ -19,5 +19,6 @@ private:
 	map<string, CaveJunction> _caveSystem;
 	string _currentLocation;
 	string _previousLocation;
+	std::vector<string> _haveVisited;
 };
 

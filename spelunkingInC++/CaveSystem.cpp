@@ -24,7 +24,8 @@ map<string, CaveJunction> CaveSystem::returnCave() {
 }
 
 void CaveSystem::move() {
-	string direction = _caveSystem.at(_currentLocation).printOptions(_caveSystem, _currentLocation, _previousLocation);
+	string direction = _caveSystem.at(_currentLocation).printOptions(_caveSystem, _currentLocation, _previousLocation,_haveVisited);
+	_haveVisited.push_back(_currentLocation);
 	if (direction == "") {
 		CaveSystem::move();
 	}

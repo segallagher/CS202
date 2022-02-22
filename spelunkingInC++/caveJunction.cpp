@@ -4,8 +4,13 @@ CaveJunction::CaveJunction(const string& d1, const string& d2, const string& d3)
 	_connections = std::vector<string>{ d1, d2, d3 };
 }
 
-string CaveJunction::printOptions(const map<string, CaveJunction>& caveSystem, const string& currentLocation, const string& previousLocation) {
+string CaveJunction::printOptions(const map<string, CaveJunction>& caveSystem, const string& currentLocation, const string& previousLocation, const std::vector<string> & haveVisited) {
 	std::cout << "Current Location: " << currentLocation << std::endl;
+	for (auto n : haveVisited) {
+		if (n == currentLocation) {
+			std::cout << "This place looks familiar..." << std::endl;
+		}
+	}
 	std::vector<string> cave = caveSystem.at(currentLocation)._connections;
 	string left, right, back;
 	for (auto i = 0; i < 3; i++) {
@@ -39,16 +44,19 @@ string CaveJunction::printOptions(const map<string, CaveJunction>& caveSystem, c
 		lowerLine.push_back(char(std::tolower(n)));
 	}
 	if (lowerLine == "left" || lowerLine == left) {
+		std::cout << std::endl;
 		return left;
 	}
 	else if (lowerLine == "right" || lowerLine == right) {
+		std::cout << std::endl;
 		return right;
 	}
 	else if (lowerLine == "back" || lowerLine == back) {
+		std::cout << std::endl;
 		return back;
 	}
 	else {
-		std::cout << "Please enter a valid option" << std::endl;
+		std::cout << "Please enter a valid option" << std::endl <<  std::endl;
 		return "";
 	}
 }
