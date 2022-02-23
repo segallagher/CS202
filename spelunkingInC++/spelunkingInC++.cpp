@@ -51,33 +51,36 @@ map<string,CaveJunction> readCaveFile(const string & fileName, string & startLoc
 }
 
 void createCave(const string & fileName) {
-	//CaveJunction names must be all lower case
-	//Last connection slot of CaveJunction() must be filled
-	//"outside" is always the end location
-	string previousLocation = "cave river";
-	string currentLocation = "damp room";
-	map<string, CaveJunction> caveSystemBase{
-		std::pair<string,CaveJunction>("damp room",CaveJunction("cave river","","large cavern")),
-		std::pair<string,CaveJunction>("cave river",CaveJunction("damp room","fast flowing water","river head")),
-		std::pair<string,CaveJunction>("river head",CaveJunction("","cave river","mossy chamber")),
-		std::pair<string,CaveJunction>("mossy chamber",CaveJunction("","","river head")),
-		std::pair<string,CaveJunction>("fast flowing water",CaveJunction("cave river","large cavern","waterfall")),
-		std::pair<string,CaveJunction>("waterfall",CaveJunction("","","fast flowing water")),
-		std::pair<string,CaveJunction>("large cavern",CaveJunction("damp room","bat roost","fast flowing water")),
-		std::pair<string,CaveJunction>("bat roost",CaveJunction("large cavern","tight passage","large slope")),
-		std::pair<string,CaveJunction>("tight passage",CaveJunction("old campfire","large slope","bat roost")),
-		std::pair<string,CaveJunction>("old campfire",CaveJunction("tight passage","","root filled passage")),
-		std::pair<string,CaveJunction>("root filled passage",CaveJunction("old campfire","windy room","wobbling stalagtites")),
-		std::pair<string,CaveJunction>("large slope",CaveJunction("bat roost","tight passage","wobbling stalagtites")),
-		std::pair<string,CaveJunction>("wobbling stalagtites",CaveJunction("large slope","root filled passage","windy room")),
-		std::pair<string,CaveJunction>("windy room",CaveJunction("wobbling stalagtites","root filled passage","cave opening")),
-		std::pair<string,CaveJunction>("cave opening",CaveJunction("windy room","","outside")),
-		std::pair<string,CaveJunction>("outside",CaveJunction("","","cave opening")),
-	};
-	CaveSystem caveSystem(caveSystemBase, currentLocation, previousLocation);
-	std::cout << "Cave created" << std::endl;
-	writeCaveFile(caveSystem, fileName,currentLocation,previousLocation);
-	std::cout << "Cave Written" << std::endl;
+	ifstream file(fileName, std::ios::in);
+	if (!file) {
+		//CaveJunction names must be all lower case
+		//Last connection slot of CaveJunction() must be filled
+		//"outside" is always the end location
+		string previousLocation = "cave river";
+		string currentLocation = "damp room";
+		map<string, CaveJunction> caveSystemBase{
+			std::pair<string,CaveJunction>("damp room",CaveJunction("cave river","","large cavern")),
+			std::pair<string,CaveJunction>("cave river",CaveJunction("damp room","fast flowing water","river head")),
+			std::pair<string,CaveJunction>("river head",CaveJunction("","cave river","mossy chamber")),
+			std::pair<string,CaveJunction>("mossy chamber",CaveJunction("","","river head")),
+			std::pair<string,CaveJunction>("fast flowing water",CaveJunction("cave river","large cavern","waterfall")),
+			std::pair<string,CaveJunction>("waterfall",CaveJunction("","","fast flowing water")),
+			std::pair<string,CaveJunction>("large cavern",CaveJunction("damp room","bat roost","fast flowing water")),
+			std::pair<string,CaveJunction>("bat roost",CaveJunction("large cavern","tight passage","large slope")),
+			std::pair<string,CaveJunction>("tight passage",CaveJunction("old campfire","large slope","bat roost")),
+			std::pair<string,CaveJunction>("old campfire",CaveJunction("tight passage","","root filled passage")),
+			std::pair<string,CaveJunction>("root filled passage",CaveJunction("old campfire","windy room","wobbling stalagtites")),
+			std::pair<string,CaveJunction>("large slope",CaveJunction("bat roost","tight passage","wobbling stalagtites")),
+			std::pair<string,CaveJunction>("wobbling stalagtites",CaveJunction("large slope","root filled passage","windy room")),
+			std::pair<string,CaveJunction>("windy room",CaveJunction("wobbling stalagtites","root filled passage","cave opening")),
+			std::pair<string,CaveJunction>("cave opening",CaveJunction("windy room","","outside")),
+			std::pair<string,CaveJunction>("outside",CaveJunction("","","cave opening")),
+		};
+		CaveSystem caveSystem(caveSystemBase, currentLocation, previousLocation);
+		std::cout << "Cave created" << std::endl;
+		writeCaveFile(caveSystem, fileName, currentLocation, previousLocation);
+		std::cout << "Cave Written" << std::endl;
+	}
 }
 
 CaveSystem readCave(const string & fileName) {
