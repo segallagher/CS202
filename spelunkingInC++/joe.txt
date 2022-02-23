@@ -1,0 +1,17 @@
+damp room,cave river
+bat roost,large cavern,tight passage,large slope
+cave opening,windy room,,outside
+cave river,damp room,fast flowing water,river head
+damp room,cave river,,large cavern
+fast flowing water,cave river,large cavern,waterfall
+large cavern,damp room,bat roost,fast flowing water
+large slope,bat roost,tight passage,wobbling stalagtites
+mossy chamber,,,river head
+old campfire,tight passage,,root filled passage
+outside,,,cave opening
+river head,,cave river,mossy chamber
+root filled passage,old campfire,windy room,wobbling stalagtites
+tight passage,old campfire,large slope,bat roost
+waterfall,,,fast flowing water
+windy room,wobbling stalagtites,root filled passage,cave opening
+wobbling stalagtites,large slope,root filled passage,windy room

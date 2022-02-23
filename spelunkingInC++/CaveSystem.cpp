@@ -25,7 +25,9 @@ map<string, CaveJunction> CaveSystem::returnCave() {
 
 void CaveSystem::move() {
 	string direction = _caveSystem.at(_currentLocation).printOptions(_caveSystem, _currentLocation, _previousLocation,_haveVisited);
-	_haveVisited.push_back(_currentLocation);
+	if (std::find(_haveVisited.begin(), _haveVisited.end(), _currentLocation) == _haveVisited.end()) {
+		_haveVisited.push_back(_currentLocation);
+	}
 	if (direction == "") {
 		CaveSystem::move();
 	}
