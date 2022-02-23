@@ -1,3 +1,4 @@
+damp room,cave river
 bat roost,large cavern,tight passage,large slope
 cave opening,windy room,,outside
 cave river,damp room,fast flowing water,river head

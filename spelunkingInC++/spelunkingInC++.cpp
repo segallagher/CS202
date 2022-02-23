@@ -5,24 +5,33 @@ using std::ofstream;
 #include "CaveSystem.h"
 #include <sstream>
 
-void writeCaveFile(CaveSystem& caveSystem,const string& fileName) {
+void writeCaveFile(CaveSystem& caveSystem,const string& fileName,const string & startLocation,const string & previousLocation) {
 	ofstream file(fileName,std::ios::out);
 	if (!file) {
 		std::cout << "Error opening " << fileName << std::endl;
 	}
-	string delim = ",";
+	file << startLocation << "," << previousLocation << std::endl;
 	for (auto n : caveSystem.returnCave()) {
 		file << n.first << n.second << std::endl;
 	}
 }
 
-map<string,CaveJunction> readCaveFile(const string & fileName) {
+map<string,CaveJunction> readCaveFile(const string & fileName, string & startLocation, string & previousLocation) {
 	ifstream file(fileName,std::ios::in);
 	if (!file) {
 		std::cout << "Error opening " << fileName << std::endl;
 	}
 	map<string, CaveJunction> caveSystem;
 	string line;
+	std::getline(file, line);
+	std::stringstream headerIntermediate(line);
+	string g;
+	std::vector<string> headerTokens;
+	while (std::getline(headerIntermediate, g, ',')) {
+		headerTokens.push_back(g);
+	}
+	startLocation = headerTokens[0];
+	previousLocation = headerTokens[1];
 
 	while (!file.eof()) {
 		std::getline(file, line);
@@ -41,11 +50,11 @@ map<string,CaveJunction> readCaveFile(const string & fileName) {
 	return caveSystem;
 }
 
-int main()
-{
+void createCave(const string & fileName) {
+	//CaveJunction names must be all lower case
+	//Last connection slot of CaveJunction() must be filled
 	string previousLocation = "cave river";
 	string currentLocation = "damp room";
-	//CaveJunction names must be all lower case, last connection slot of CaveJunction() must be filled
 	map<string, CaveJunction> caveSystemBase{
 		std::pair<string,CaveJunction>("damp room",CaveJunction("cave river","","large cavern")),
 		std::pair<string,CaveJunction>("cave river",CaveJunction("damp room","fast flowing water","river head")),
@@ -64,16 +73,27 @@ int main()
 		std::pair<string,CaveJunction>("cave opening",CaveJunction("windy room","","outside")),
 		std::pair<string,CaveJunction>("outside",CaveJunction("","","cave opening")),
 	};
-	CaveSystem caveSystem(caveSystemBase,currentLocation,previousLocation);
+	CaveSystem caveSystem(caveSystemBase, currentLocation, previousLocation);
 	std::cout << "Cave created" << std::endl;
-	writeCaveFile(caveSystem, "joe.txt");
+	writeCaveFile(caveSystem, fileName,currentLocation,previousLocation);
 	std::cout << "Cave Written" << std::endl;
-	map<string,CaveJunction> a = readCaveFile("joe.txt");
+}
+
+CaveSystem readCave(const string & fileName) {
+	string currentLocation;
+	string previousLocation;
+	map<string,CaveJunction> cave = readCaveFile(fileName, currentLocation, previousLocation);
 	std::cout << "Cave read" << std::endl;
-	CaveSystem caveSystem2(a,currentLocation,previousLocation);
+	CaveSystem createdCaves(cave, currentLocation, previousLocation);
 	std::cout << "Cave system created" << std::endl;
+	return createdCaves;
+}
+
+int main()
+{
+	const string fileName = "joe.txt";
+	createCave(fileName);
+	CaveSystem caves = readCave(fileName);
 	std::cout << "Starting Game" << std::endl << std::endl;
-	caveSystem2.move();
-	caveSystem2.move();
-	caveSystem2.move();
+	caves.move();
 }
