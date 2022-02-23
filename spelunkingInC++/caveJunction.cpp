@@ -30,7 +30,7 @@ string CaveJunction::printOptions(const map<string, CaveJunction>& caveSystem, c
 
 	}
 	if (left != ""){
-		std::cout << "- Go left to " << left << std::endl;
+		std::cout << "- Go Left to " << left << std::endl;
 	}
 	if (right != "") {
 		std::cout << "- Go Right to " << right << std::endl;
