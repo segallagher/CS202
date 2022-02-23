@@ -34,6 +34,8 @@ void sharedPtr() {
 
 int main()
 {
+	std::cout << 3["stirng"] << std::endl;
+#if 0
 	std::cout << "-Starting rawPtr-" << std::endl;
 	rawPtr();
 	std::cout << std::endl;
@@ -46,4 +48,5 @@ int main()
 	std::cout << "-Starting sharedPtr-" << std::endl;
 	sharedPtr();
 	std::cout << std::endl;
+#endif
 }
