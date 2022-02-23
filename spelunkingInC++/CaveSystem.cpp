@@ -35,3 +35,7 @@ void CaveSystem::move() {
 	}
 	return;
 }
+
+string CaveSystem::returnLocation() {
+	return _currentLocation;
+}

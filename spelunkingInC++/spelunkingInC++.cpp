@@ -53,6 +53,7 @@ map<string,CaveJunction> readCaveFile(const string & fileName, string & startLoc
 void createCave(const string & fileName) {
 	//CaveJunction names must be all lower case
 	//Last connection slot of CaveJunction() must be filled
+	//"outside" is always the end location
 	string previousLocation = "cave river";
 	string currentLocation = "damp room";
 	map<string, CaveJunction> caveSystemBase{
@@ -89,11 +90,20 @@ CaveSystem readCave(const string & fileName) {
 	return createdCaves;
 }
 
+void gameStart(CaveSystem & caves) {
+	int turns = 0;
+	while (caves.returnLocation() != "outside") {
+		caves.move();
+		turns++;
+	}
+	std::cout << "You made it out of the cave!\nAnd it only took " << turns << " turns" << std::endl;
+}
+
 int main()
 {
 	const string fileName = "joe.txt";
 	createCave(fileName);
 	CaveSystem caves = readCave(fileName);
 	std::cout << "Starting Game" << std::endl << std::endl;
-	caves.move();
+	gameStart(caves);
 }
