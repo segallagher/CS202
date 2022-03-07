@@ -44,10 +44,14 @@ vector<Word> createWordData(const string & fileName) {
     return words;
 }
 
-int main()
-{
-    vector<Word> a = createWordData("book.txt");
-    for (auto n : a) {
+void printWords(vector<Word> & data) {
+    for (auto n : data) {
         cout << n << endl;
     }
+}
+
+int main()
+{
+    vector<Word> wordList = createWordData("book.txt");
+    printWords(wordList);
 }
