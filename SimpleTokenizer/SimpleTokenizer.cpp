@@ -8,7 +8,9 @@ using std::vector;
 using std::ifstream;
 using std::ofstream;
 
-vector<Word> createWordData(string & fileName) {
+vector<Word> createWordData(const string & fileName) {
+    char delim = ' ';
+
     ifstream file(fileName);
     if (!file.is_open()) {
         cout << "Error reading file " << fileName << endl;
@@ -16,14 +18,36 @@ vector<Word> createWordData(string & fileName) {
     }
     vector<Word> words;
     string line;
+    int lineNum = 0;
     while (std::getline(file, line)) {
-        for (auto n : line) {
-            /////////////////////////////
+        lineNum++;
+        bool reading = false;
+        string tmp;
+        int columnNum;
+        for (int i = 0; i < line.size();i++) {
+            if (line.at(i) != delim) {
+                reading = true;
+                if (i == 0 || line.at(i - 1) == delim ) {
+                    columnNum = i;
+                }
+            }
+            else {
+                reading = false;
+                words.push_back(Word(tmp, lineNum, columnNum + 1));
+                tmp.erase();
+            }
+            if (reading) {
+                tmp.push_back(line[i]);
+            }
         }
     }
+    return words;
 }
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    vector<Word> a = createWordData("book.txt");
+    for (auto n : a) {
+        cout << n << endl;
+    }
 }
