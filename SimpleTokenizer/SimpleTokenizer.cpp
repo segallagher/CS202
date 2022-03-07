@@ -7,6 +7,28 @@ using std::vector;
 #include <fstream>
 using std::ifstream;
 using std::ofstream;
+#include<sstream>
+using std::istream;
+
+vector<string> lineToTokens(const string& line) {
+    vector<string> tokens;
+    std::stringstream g(line);
+    string token;
+    while(std::getline(g, token,' ')) {
+        tokens.push_back(token);
+    }
+    return tokens;
+}
+
+vector<Word> readLines(istream& is) {
+
+}
+
+void printTokens(ostream& os, const vector<Word>& tokens) {
+    for (auto n : tokens) {
+        os << n << endl;
+    }
+}
 
 vector<Word> createWordData(const string & fileName) {
     char delim = ' ';
@@ -50,8 +72,13 @@ void printWords(vector<Word> & data) {
     }
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    vector<Word> wordList = createWordData("book.txt");
-    printWords(wordList);
+    cout << argc << endl;
+    for (int i = 0; i < argc; i++) {
+        cout << argv[i] << endl;
+    }
+    //vector<Word> wordList = createWordData("book.txt");
+    //printWords(wordList);
+    std::cout << "done" << std::endl;
 }
