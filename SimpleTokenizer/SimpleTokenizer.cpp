@@ -86,13 +86,29 @@ void printWords(vector<Word> & data) {
     }
 }
 
+void printLines(vector<Word> & data) {
+    vector<Word>::iterator it = data.begin();
+    std::ostringstream out;
+    for (int i = 0; i < data.size();i++) {
+        out << it->returnWord() << " ";
+        it++;
+        if (data[i].returnLine() - data[i - 1].returnLine() != 0) {
+            cout << out.str() << endl;
+            out.str("");
+        }
+    }
+}
+
 int main(int argc, char *argv[])
 {
-    if (argc == 1) {
+    if (argc == 2) {
         vector<Word> wordList = createWordData(argv[1]);
         printWords(wordList);
+    }else if(argc == 3 && string(argv[2]) == "--lineonly") {
+        vector<Word> wordList = createWordData(argv[1]);
+        printLines(wordList);
     }
-    vector<Word> wordList = createWordData("book.txt");
-    printWords(wordList);
-    std::cout << "done" << std::endl;
+    else {
+        cout << "Error with arguments" << endl;
+    }
 }
