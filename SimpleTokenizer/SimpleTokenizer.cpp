@@ -7,9 +7,11 @@ using std::vector;
 #include <fstream>
 using std::ifstream;
 using std::ofstream;
-#include<sstream>
+#include <sstream>
 using std::istream;
+#include <algorithm>
 
+#if 0
 vector<string> lineToTokens(const string& line) {
     vector<string> tokens;
     std::stringstream g(line);
@@ -21,7 +23,19 @@ vector<string> lineToTokens(const string& line) {
 }
 
 vector<Word> readLines(istream& is) {
-
+    std::ostringstream sstr;
+    sstr << is.rdbuf();
+    vector<Word> words;
+    string line = sstr.str();
+    //while (std::getline(is, line, ' ')) {
+        vector<string> tokens = lineToTokens(line);
+        for (auto n : tokens) {
+            cout << sstr.str().find(n) << endl;
+        }
+        //line
+     //   std::for_each(tokens.begin(), tokens.end(),[] words.push_back(Word("d",1,1)));
+        
+    //}
 }
 
 void printTokens(ostream& os, const vector<Word>& tokens) {
@@ -29,7 +43,7 @@ void printTokens(ostream& os, const vector<Word>& tokens) {
         os << n << endl;
     }
 }
-
+#endif
 vector<Word> createWordData(const string & fileName) {
     char delim = ' ';
 
@@ -74,11 +88,11 @@ void printWords(vector<Word> & data) {
 
 int main(int argc, char *argv[])
 {
-    cout << argc << endl;
-    for (int i = 0; i < argc; i++) {
-        cout << argv[i] << endl;
+    if (argc == 1) {
+        vector<Word> wordList = createWordData(argv[1]);
+        printWords(wordList);
     }
-    //vector<Word> wordList = createWordData("book.txt");
-    //printWords(wordList);
+    vector<Word> wordList = createWordData("book.txt");
+    printWords(wordList);
     std::cout << "done" << std::endl;
 }
