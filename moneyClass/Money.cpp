@@ -33,3 +33,13 @@ bool Money::operator>(const Money& rhs) {
 bool Money::operator>=(const Money& rhs) {
 	return _cents > rhs._cents || _cents == rhs._cents;
 }
+
+Money& Money::operator*=(const double& num) {
+	_cents *= num;
+	return *this;
+}
+
+Money& Money::operator/=(const double& num) {
+	_cents /= num;
+	return *this;
+}

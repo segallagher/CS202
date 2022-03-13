@@ -10,9 +10,10 @@ class Money
 {
 public:
 	Money(){ _cents = 0; }
-	Money(const int &zimflop) { _cents = zimflop; }
+	Money(const double &zimflop) { _cents = zimflop * 100; }
+	Money(const int& dollars, const int&cents) { _cents = dollars * 100 + cents; }
 	~Money(){}
-	friend std::ostream& operator<<(std::ostream& out, const Money& object) { out << "$" << object._cents / 100.0; if (object._cents == 0) { out << ".0"; } if (object._cents % 10 == 0) { out << "0"; }  return out; }
+	friend std::ostream& operator<<(std::ostream& out, const Money& object) { if (object._cents < 0) { out << "-"; } out << "$"; out << std::fixed << std::setprecision(2) << std::abs(object._cents / 100.0); return out; }
 	friend Money operator+(const Money& lhs, const Money& rhs) { return Money(lhs) += rhs; };
 	Money& operator+=(const Money&);
 	friend Money operator-(const Money& lhs, const Money& rhs) { return Money(lhs) += rhs; };
@@ -23,7 +24,11 @@ public:
 	bool operator<=(const Money&);
 	bool operator>(const Money&);
 	bool operator>=(const Money&);
+	friend Money& operator*(const Money& lhs, const Money& rhs) { return Money(lhs) * rhs; };
+	Money& operator*=(const double&);
+	friend Money& operator/(const Money& lhs, const Money& rhs) { return Money(lhs) / rhs; };
+	Money& operator/=(const double&);
 private:
-	int _cents;
+	float _cents;
 };
 
