@@ -1,4 +1,4 @@
-#include "Money.h"
+#include "Money.hpp"
 
 Money& Money::operator+=(const Money& rhs) {
 	_cents += rhs._cents;
@@ -10,36 +10,12 @@ Money& Money::operator-=(const Money& rhs) {
 	return *this;
 }
 
-bool Money::operator==(const Money& rhs) {
-	return _cents == rhs._cents;
-}
-
-bool Money::operator!=(const Money& rhs) {
-	return !(_cents == rhs._cents);
-}
-
-bool Money::operator<(const Money& rhs) {
-	return _cents < rhs._cents;
-}
-
-bool Money::operator<=(const Money& rhs) {
-	return _cents < rhs._cents || _cents == rhs._cents;
-}
-
-bool Money::operator>(const Money& rhs) {
-	return _cents > rhs._cents;
-}
-
-bool Money::operator>=(const Money& rhs) {
-	return _cents > rhs._cents || _cents == rhs._cents;
-}
-
-Money& Money::operator*=(const double& num) {
+Money& Money::operator*=(const float& num) {
 	_cents *= num;
 	return *this;
 }
 
-Money& Money::operator/=(const double& num) {
+Money& Money::operator/=(const float& num) {
 	_cents /= num;
 	return *this;
 }
