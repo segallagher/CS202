@@ -36,23 +36,23 @@ string removeDoubleNewline(string & file) {
 void prettyPrint(vector<string> & paragraphs,const int & spacing) {
 	char delim = ' ';
 	ostringstream output;
-	for (int i = 0; i < paragraphs.size(); i++) {
+	for (int i = 0; i < paragraphs.size(); i++) {	// iterate over all paragraphs
 		ostringstream os;
 		vector<string> tokens = Tokenize(paragraphs[i], delim);
 
 
-		for (int k = 0; k < tokens.size(); k++) {
+		for (int k = 0; k < tokens.size(); k++) {	// iterate over all words in a paragraph
 			
-			if (os.str().size() + tokens.at(k).size() <= spacing && tokens.at(k) != tokens.at(tokens.size()-1)) {
+			if (os.str().size() + tokens.at(k).size() <= spacing && tokens.at(k) != tokens.at(tokens.size()-1)) {	//make sure not at end of paragraph and not going over spacing # of characters
 				os << tokens.at(k) << " ";
 			}
-			else if (tokens.at(k) == tokens.at(tokens.size() - 1)) {
+			else if (tokens.at(k) == tokens.at(tokens.size() - 1)) {	// if at end of paragraph
 				os << tokens.at(k) << " ";
 				os << "\n";
 				output << os.str();
 				os.str("");
 			}
-			else {
+			else {	// if at end of line, newline and add word to beginning of next line
 				os << "\n";
 				output << os.str();
 				os.str("");
@@ -70,11 +70,11 @@ int main(int argc, char* argv[])
 {
 	string filename = argv[2];
 
-	ifstream file(filename);
+	ifstream file(filename);	//open file
 	string str((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-	string s = removeDoubleNewline(str);
+	string s = removeDoubleNewline(str);	// remove \n after every line in project gutenburg books that makes it human readable
 	istringstream stream(s);
-	vector<string> paragraphs = separateParagraphs(stream);
+	vector<string> paragraphs = separateParagraphs(stream);	// separate book into paragraphs
 
 	if (string(argv[1]) == "prettyprint") {
 		int spacing = atoi(argv[3]);
