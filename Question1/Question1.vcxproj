@@ -140,9 +140,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="PaperColumn.cpp" />
     <ClCompile Include="prettyprint.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PaperColumn.hpp" />
     <ClInclude Include="Tokenizer.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

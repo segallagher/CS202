@@ -18,9 +18,15 @@
     <ClCompile Include="prettyprint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PaperColumn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tokenizer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PaperColumn.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
