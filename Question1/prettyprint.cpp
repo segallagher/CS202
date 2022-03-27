@@ -40,6 +40,7 @@ void prettyPrint(vector<string> & paragraphs,const int & spacing) {
 		ostringstream os;
 		vector<string> tokens = Tokenize(paragraphs[i], delim);
 
+
 		for (int k = 0; k < tokens.size(); k++) {
 			
 			if (os.str().size() + tokens.at(k).size() <= spacing && tokens.at(k) != tokens.at(tokens.size()-1)) {
@@ -65,13 +66,19 @@ void prettyPrint(vector<string> & paragraphs,const int & spacing) {
 	output.str() = "";
 }
 
-int main()
+int main(int argc, char* argv[])
 {
-	ifstream file("pg67698.txt");
+	string filename = argv[2];
+
+	ifstream file(filename);
 	string str((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 	string s = removeDoubleNewline(str);
 	istringstream stream(s);
 	vector<string> paragraphs = separateParagraphs(stream);
-	
-	prettyPrint(paragraphs, 50);
+
+	if (string(argv[1]) == "prettyprint") {
+		int spacing = atoi(argv[3]);
+		prettyPrint(paragraphs, spacing);
+	}
+
 }
