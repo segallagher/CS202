@@ -33,14 +33,36 @@ string removeDoubleNewline(string & file) {
 	return output;
 }
 
-void prettyPrint(vector<string> & paragraphs,int & spacing) {
+void prettyPrint(vector<string> & paragraphs,const int & spacing) {
+	char delim = ' ';
+	ostringstream output;
 	for (int i = 0; i < paragraphs.size(); i++) {
 		ostringstream os;
-		bool printing = true;
-		while (printing) {
+		vector<string> tokens = Tokenize(paragraphs[i], delim);
+
+		for (int k = 0; k < tokens.size(); k++) {
+			
+			if (os.str().size() + tokens.at(k).size() <= spacing && tokens.at(k) != tokens.at(tokens.size()-1)) {
+				os << tokens.at(k) << " ";
+			}
+			else if (tokens.at(k) == tokens.at(tokens.size() - 1)) {
+				os << tokens.at(k) << " ";
+				os << "\n";
+				output << os.str();
+				os.str("");
+			}
+			else {
+				os << "\n";
+				output << os.str();
+				os.str("");
+				os << tokens.at(k) << " ";
+			}
 
 		}
+		output << "\n";
 	}
+	std::cout << output.str() << std::endl;
+	output.str() = "";
 }
 
 int main()
@@ -50,9 +72,6 @@ int main()
 	string s = removeDoubleNewline(str);
 	istringstream stream(s);
 	vector<string> paragraphs = separateParagraphs(stream);
-
-	vector<string> out = Tokenize(paragraphs[1], ' ');
-	for (auto n : out) {
-		std::cout << n << std::endl;
-	}
+	
+	prettyPrint(paragraphs, 50);
 }
