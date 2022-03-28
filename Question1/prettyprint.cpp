@@ -10,6 +10,7 @@ using std::istringstream;
 using std::ostringstream;
 
 #include "Tokenizer.hpp"
+#include "PaperColumn.hpp"
 
 vector<string> separateParagraphs(istringstream & file) {
 	vector<string> paragraphs;
@@ -32,7 +33,11 @@ string removeDoubleNewline(string & file) {
 	}
 	return output;
 }
-
+/*
+void printStream(ostringstream& stream) {
+	std::cout << stream.str() << std::endl;
+}
+*/
 void prettyPrint(vector<string> & paragraphs,const int & spacing) {
 	char delim = ' ';
 	ostringstream output;
@@ -70,8 +75,12 @@ void prettyPrint(vector<string> & paragraphs,const int & spacing) {
 		}
 		output << "\n";
 	}
-	std::cout << output.str() << std::endl;
-	output.str() = "";
+	//return output;
+}
+
+void twocolumn(vector<string>& paragraphs,const int & lines, const int& spacing, const int & margin) {
+	vector<PaperColumn> paper;
+
 }
 
 int main(int argc, char* argv[])
