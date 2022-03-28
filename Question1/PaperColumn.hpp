@@ -1,14 +1,14 @@
 #pragma once
 #include <vector>
-#include <sstream>
+#include <string>
 
 class PaperColumn
 {
 public:
 	PaperColumn() {};
-	PaperColumn(std::vector<std::ostringstream>& lines) { _lines = lines; }
-	//std::ostringstream& returnLine(int& i) { return _lines.at(i); }
+	PaperColumn(std::vector<std::string>& lines) { _lines = lines; }
+	std::string returnLine(int& i) { return _lines.at(i); }
 private:
-	std::vector<std::ostringstream> _lines;
+	std::vector<std::string> _lines;
 };
 

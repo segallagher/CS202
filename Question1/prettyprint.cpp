@@ -33,12 +33,12 @@ string removeDoubleNewline(string & file) {
 	}
 	return output;
 }
-/*
-void printStream(ostringstream& stream) {
-	std::cout << stream.str() << std::endl;
+
+void printString(string& str) {
+	std::cout << str << std::endl;
 }
-*/
-void prettyPrint(vector<string> & paragraphs,const int & spacing) {
+
+string prettyPrint(vector<string> & paragraphs,const int & spacing) {
 	char delim = ' ';
 	ostringstream output;
 	for (int i = 0; i < paragraphs.size(); i++) {	// iterate over all paragraphs
@@ -75,7 +75,7 @@ void prettyPrint(vector<string> & paragraphs,const int & spacing) {
 		}
 		output << "\n";
 	}
-	//return output;
+	return output.str();
 }
 
 void twocolumn(vector<string>& paragraphs,const int & lines, const int& spacing, const int & margin) {
@@ -95,7 +95,8 @@ int main(int argc, char* argv[])
 
 	if (string(argv[1]) == "prettyprint") {
 		int spacing = atoi(argv[3]);
-		prettyPrint(paragraphs, spacing);
+		string s = prettyPrint(paragraphs, spacing);
+		printString(s);
 	}
 
 }
