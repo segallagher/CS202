@@ -82,8 +82,8 @@ string prettyPrint(vector<string> & paragraphs,const int & spacing) {
 
 void printColumns(vector<PaperColumn>& papers,const int &columns, const int& lines, const int& spacing, const int& margin) {
 	// Very much not DRY
-	char sheetDividerChar = '-';
-	char pageDividerChar = ' ';
+	const char sheetDividerChar = '-';	//CHARACTER BENEATH EACH SHEET
+	const char pageDividerChar = ' ';	//CHARACTER BETWEEN EACH PAGE
 
 	ostringstream out;
 	int printedPapers = 0;
@@ -155,7 +155,10 @@ void appendPaper(vector<PaperColumn>& papers, string& paper) {
 	papers.push_back(a);
 }
 
-void twocolumn(vector<string>& paragraphs, const int& lines, const int& spacing, const int& margin) {
+void twocolumn(vector<string>& paragraphs, const int& lines, const int& spacing, const int& margin, const int& columns = 2) {
+	//const int columns = 5;	//VALUE = NUMBER OF COLUMNS IN THE FINAL PRINT
+
+
 	vector<PaperColumn> papers;
 	string bookString = prettyPrint(paragraphs, spacing);
 	vector<string> bookLines = Tokenize(bookString,'\n');
@@ -163,7 +166,6 @@ void twocolumn(vector<string>& paragraphs, const int& lines, const int& spacing,
 		bookLines.push_back("");
 	}
 
-	int columns = 5;
 	int totalLines = 0;
 	double tmp = bookLines.size() / (double)lines;
 	int totalPages = (int) ceil((float) bookLines.size() / lines);
@@ -179,30 +181,30 @@ void twocolumn(vector<string>& paragraphs, const int& lines, const int& spacing,
 
 int main(int argc, char* argv[])
 {
-	//string filename = argv[2];
-	string filename = "pg67698.txt";
+	string filename = argv[2];
 
 	ifstream file(filename);	//open file
 	string str((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 	string s = removeDoubleNewline(str);	// remove \n after every line in project gutenburg books that makes it human readable
 	istringstream stream(s);
 	vector<string> paragraphs = separateParagraphs(stream);	// separate book into paragraphs
-	/*
+
 	if (string(argv[1]) == "prettyprint") {
 		int spacing = atoi(argv[3]);
 		string s = prettyPrint(paragraphs, spacing);
 		printString(s);
 	}
-	else if (string(argv[1]) == "twocolumn") {
+	else if (string(argv[1]) == "twocolumn" && argc == 6) {
 		int lines = atoi(argv[3]);
 		int spacing = atoi(argv[4]);
 		int margin = atoi(argv[5]);
 		twocolumn(paragraphs, lines, spacing, margin);
 	}
-	*/
-
-	int lines = 40;//40
-	int spacing = 38;//38
-	int margin = 4;//4
-	twocolumn(paragraphs, lines, spacing, margin);
+	else if (string(argv[1]) == "twocolumn" && argc == 7) {
+		int lines = atoi(argv[3]);
+		int spacing = atoi(argv[4]);
+		int margin = atoi(argv[5]);
+		int columns = atoi(argv[6]);
+		twocolumn(paragraphs, lines, spacing, margin,columns);
+	}
 }
