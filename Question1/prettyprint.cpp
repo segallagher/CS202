@@ -81,32 +81,19 @@ string prettyPrint(vector<string> & paragraphs,const int & spacing) {
 }
 
 void printColumns(vector<PaperColumn>& papers,const int &columns, const int& lines, const int& spacing, const int& margin) {
-#if 0
-	int totalPapers = 0;
-	for (int b = 0; b < papers.size(); b++) {
-		std::ostringstream out;
-		for (int k = 0; k < lines; k++) {
-			for (int i = 0; i < columns; i++) {
-				out << setw(spacing) << std::left << papers.at(i + totalPapers).returnLine(k);
-				if (i < columns - 1) {
-					for (int space = 0; space < margin; space++) {
-						out << " ";
-					}
-				}
-				totalPapers++;
-			}
-			out << '\n';
-		}
-		for (int h = 0; h < columns * (spacing + margin) - margin; h++) { out << "-"; }
-		std::cout << out.str() << std::endl;
-		out.str("");
-	}
-#endif
+	// Very much not DRY
 	ostringstream out;
+	int printedPapers = 0;
 	for (int i = 0; i < papers.size(); i+= columns) { //sheets
+		if (papers.size() - i < columns) { break; }
 		for (int k = 0; k < lines; k++) {//lines
 			for (int q = 0; q < columns; q++) {//columns
-				out << setw(spacing) << std::left << papers.at(i + q).returnLine(k);
+				if (!(k < lines - 0)) {
+					out << setw(spacing) << std::left << papers.at(printedPapers + q).returnLine(k);
+				}
+				else {
+					out << setw(spacing) << std::left << papers.at(printedPapers + q).returnLine(k).substr(0, papers.at(printedPapers + q).returnLine(k).size() - 1);
+				}
 				if (q < columns-1) {
 					for (int s = 0; s < margin; s++) {
 						out << "|";
@@ -115,7 +102,33 @@ void printColumns(vector<PaperColumn>& papers,const int &columns, const int& lin
 			}
 			out << '\n';
 		}
+		printedPapers += columns;
 		out << "------------------------------------------------------------\n";
+	}
+	// last pages
+	if (printedPapers < papers.size()) {
+		int remaining = papers.size() - printedPapers;
+			for (int k = 0; k < lines; k++) {//lines
+				for (int q = 0; q < remaining; q++) {//columns
+					if (!(k < lines - 0)) {
+						out << setw(spacing) << std::left << papers.at(printedPapers + q).returnLine(k);
+					}
+					else {
+						out << setw(spacing) << std::left << papers.at(printedPapers + q).returnLine(k).substr(0, papers.at(printedPapers + q).returnLine(k).size()-1);
+					}
+					//if (!(k < lines - 1)) {
+					//	out.seekp(out.str().size() - 1);
+						//out << " ";
+					//}
+					if (q < columns - 1) {
+						for (int s = 0; s < margin; s++) {
+							out << "|";
+						}
+					}
+				}
+				out << '\n';
+			}
+			out << "------------------------------------------------------------\n";
 	}
 	std::cout << out.str() << std::endl;
 }
@@ -144,7 +157,7 @@ void twocolumn(vector<string>& paragraphs, const int& lines, const int& spacing,
 		bookLines.push_back("");
 	}
 
-	int columns = 3;
+	int columns = 7;
 	int totalLines = 0;
 	double tmp = bookLines.size() / (double)lines;
 	int totalPages = (int) ceil((float) bookLines.size() / lines);
@@ -153,12 +166,7 @@ void twocolumn(vector<string>& paragraphs, const int& lines, const int& spacing,
 		string a = generatePaper(bookLines, lines, spacing, margin);
 		appendPaper(papers, a);
 	}
-	/*
-	for (auto n : papers) {
-		for (int i = 0; i < lines; i++) {
-			std::cout << n.returnLine(i) << std::endl;
-		}
-	}*/
+
 	printColumns(papers, columns, lines, spacing, margin);
 
 }
