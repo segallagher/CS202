@@ -82,6 +82,9 @@ string prettyPrint(vector<string> & paragraphs,const int & spacing) {
 
 void printColumns(vector<PaperColumn>& papers,const int &columns, const int& lines, const int& spacing, const int& margin) {
 	// Very much not DRY
+	char sheetDividerChar = '-';
+	char pageDividerChar = ' ';
+
 	ostringstream out;
 	int printedPapers = 0;
 	for (int i = 0; i < papers.size(); i+= columns) { //sheets
@@ -96,16 +99,19 @@ void printColumns(vector<PaperColumn>& papers,const int &columns, const int& lin
 				}
 				if (q < columns-1) {
 					for (int s = 0; s < margin; s++) {
-						out << "|";
+						out << pageDividerChar;
 					}
 				}
 			}
 			out << '\n';
 		}
 		printedPapers += columns;
-		out << "------------------------------------------------------------\n";
+		for (int i = 0; i < columns * (spacing + margin) - margin;i++) {
+			out << sheetDividerChar;
+		}
+		out << "\n";
 	}
-	// last pages
+	// last pages, Very much not DRY, could be rewritten but this code has been going on far too long
 	if (printedPapers < papers.size()) {
 		int remaining = papers.size() - printedPapers;
 			for (int k = 0; k < lines; k++) {//lines
@@ -116,19 +122,19 @@ void printColumns(vector<PaperColumn>& papers,const int &columns, const int& lin
 					else {
 						out << setw(spacing) << std::left << papers.at(printedPapers + q).returnLine(k).substr(0, papers.at(printedPapers + q).returnLine(k).size()-1);
 					}
-					//if (!(k < lines - 1)) {
-					//	out.seekp(out.str().size() - 1);
-						//out << " ";
-					//}
 					if (q < columns - 1) {
 						for (int s = 0; s < margin; s++) {
-							out << "|";
+							out << pageDividerChar;
 						}
 					}
 				}
 				out << '\n';
 			}
-			out << "------------------------------------------------------------\n";
+			printedPapers += columns;
+			for (int i = 0; i < columns * (spacing + margin) - margin;i++) {
+				out << sheetDividerChar;
+			}
+			out << "\n";
 	}
 	std::cout << out.str() << std::endl;
 }
@@ -157,7 +163,7 @@ void twocolumn(vector<string>& paragraphs, const int& lines, const int& spacing,
 		bookLines.push_back("");
 	}
 
-	int columns = 7;
+	int columns = 5;
 	int totalLines = 0;
 	double tmp = bookLines.size() / (double)lines;
 	int totalPages = (int) ceil((float) bookLines.size() / lines);
@@ -195,8 +201,8 @@ int main(int argc, char* argv[])
 	}
 	*/
 
-	int lines = 40;
-	int spacing = 38;
-	int margin = 4;
+	int lines = 40;//40
+	int spacing = 38;//38
+	int margin = 4;//4
 	twocolumn(paragraphs, lines, spacing, margin);
 }
