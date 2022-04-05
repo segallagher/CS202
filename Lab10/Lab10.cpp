@@ -20,18 +20,20 @@ void functionB() {
 }
 
 void functionA() {
-    try {
+    //try {
         functionB();
         // your code here
+   // }
+}
+int main() {
+    cout << "Starting main()" << endl;
+    try {
+        functionA();
     }
     catch(const std::runtime_error& e){
         cout << "Caught an exception: " << e.what() << endl;
         // your code here
     }
-}
-int main() {
-    cout << "Starting main()" << endl;
-    functionA();
     cout << "Ended normally." << endl;
     return 0;
 }
