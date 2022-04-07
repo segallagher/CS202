@@ -19,8 +19,8 @@ void drawHollow(const int & w, const int & h) {
 }
 
 void HollowBox::draw() const {
-	drawSolid(_width);
-	drawHollow(_width, _height);
-	drawSolid(_width);
+	drawSolid(get_width());
+	drawHollow(get_width(), get_height());
+	drawSolid(get_width());
 }
 
