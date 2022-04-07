@@ -1,5 +1,6 @@
 #pragma once
 #include "Box.h"
+#include <string>
 class CheckeredBox :
     public Box
 {
