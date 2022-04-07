@@ -3,9 +3,9 @@
 class FilledBox : public Box
 {
 public:
-	FilledBox() { set_width(2); set_height(2); }
-	FilledBox(const int& w) { set_width(w); set_height(w); }
-	FilledBox(const int& w, const int& h) { set_width(w); set_height(h); }
+	FilledBox() : Box() {}
+	FilledBox(const int& w) : Box(w) {}
+	FilledBox(const int& w, const int& h) : Box(w, h) {}
 	~FilledBox(){}
 	void draw() const;
 };

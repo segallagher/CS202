@@ -3,7 +3,7 @@
 class Box
 {
 public:
-	Box() : _width(2), _height(2) {}
+	Box() : _width(3), _height(3) {}
 	Box(const int& w) : _width(w), _height(w) {}
 	Box(const int& w, const int& h) : _width(w), _height(h) {}
 	virtual void draw() const = 0;

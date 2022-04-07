@@ -4,7 +4,6 @@ void drawSolid(const int & w) {
 	for (int i = 0; i < w; i++) {
 		std::cout << '*';
 	}
-	std::cout << std::endl;
 }
 
 void drawHollow(const int & w, const int & h) {
@@ -20,6 +19,7 @@ void drawHollow(const int & w, const int & h) {
 
 void HollowBox::draw() const {
 	drawSolid(get_width());
+	std::cout << "\n";
 	drawHollow(get_width(), get_height());
 	drawSolid(get_width());
 }
