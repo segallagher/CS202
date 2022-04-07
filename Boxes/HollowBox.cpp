@@ -8,12 +8,12 @@ void drawSolid(const int & w) {
 }
 
 void drawHollow(const int & w, const int & h) {
-	for (int i = 0; i < h; i++) {
+	for (int i = 0; i < h - 2; i++) {
 		std::cout << '*';
 		for (int k = 0; k < w - 2; k++) {
 			std::cout << ' ';
 		}
-		std::cout << '*';
+		std::cout << "*\n";
 	}
 
 }

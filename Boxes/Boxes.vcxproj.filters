@@ -18,18 +18,24 @@
     <ClCompile Include="Boxes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Box.cpp">
+    <ClCompile Include="FilledBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HollowBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Box.h">
+    <ClInclude Include="FilledBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HollowBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

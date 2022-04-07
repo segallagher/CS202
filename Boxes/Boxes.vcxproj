@@ -139,13 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Box.cpp" />
+    <ClCompile Include="FilledBox.cpp" />
     <ClCompile Include="Boxes.cpp" />
     <ClCompile Include="HollowBox.cpp" />
+    <ClCompile Include="Box.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Box.h" />
+    <ClInclude Include="FilledBox.h" />
     <ClInclude Include="HollowBox.h" />
+    <ClInclude Include="Box.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,11 +1,12 @@
 #pragma once
-#include "Box.h"
+#include "FilledBox.h"
 class HollowBox :
-    public Box
+    public FilledBox
 {
-    HollowBox(): Box(){}
-    HollowBox(const int& w) : Box(w) {}
-    HollowBox(const int& w, const int& h) : Box(w,h) {}
+public:
+    HollowBox(): FilledBox(){}
+    HollowBox(const int& w) : FilledBox(w) {}
+    HollowBox(const int& w, const int& h) : FilledBox(w,h) {}
     ~HollowBox(){}
     void draw() const;
 };
