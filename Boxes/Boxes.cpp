@@ -1,6 +1,7 @@
 
 #include "FilledBox.h"
 #include "HollowBox.h"
+#include "CheckeredBox.h"
 
 #include <iostream>
 
@@ -11,4 +12,7 @@ int main()
 	std::cout << std::endl;
 	HollowBox b(5);
 	b.draw();
+	std::cout << std::endl;
+	CheckeredBox c(5);
+	c.draw();
 }

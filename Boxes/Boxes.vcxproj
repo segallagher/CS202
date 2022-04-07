@@ -139,12 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CheckeredBox.cpp" />
     <ClCompile Include="FilledBox.cpp" />
     <ClCompile Include="Boxes.cpp" />
     <ClCompile Include="HollowBox.cpp" />
     <ClCompile Include="Box.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CheckeredBox.h" />
     <ClInclude Include="FilledBox.h" />
     <ClInclude Include="HollowBox.h" />
     <ClInclude Include="Box.h" />
