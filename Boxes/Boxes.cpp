@@ -13,7 +13,7 @@ int main()
 	//need to use unique_ptr instead of new
 	warehouse.push_back(new FilledBox());
 	warehouse.push_back(new HollowBox());
-	warehouse.push_back(new CheckeredBox());
+	warehouse.push_back(new CheckeredBox(10,4));
 
 	for (auto n : warehouse) {
 		n->draw();

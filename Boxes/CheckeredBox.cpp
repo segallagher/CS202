@@ -1,13 +1,11 @@
 #include "CheckeredBox.h"
 
 void CheckeredBox::draw() const{
-	for (int i = 0; i < get_width() * get_height(); i++) {
-		if (i % get_width() == 0) { std::cout << "\n"; }
-		if (i % 2 == 0) {
-			std::cout << 'x';
+	std::string characters = "x ";
+	for (int k = 0; k < get_height(); k++) {
+		for (int i = 0; i < get_width(); i++) {
+			std::cout << characters.at((i % 2 + k % 2) % 2);
 		}
-		else {
-			std::cout << ' ';
-		}
+		std::cout << '\n';
 	}
 }
