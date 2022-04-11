@@ -15,5 +15,6 @@ public:
 	void generateCave();
 private:
 	int _size;
+	vector<Room> _cave;
 };
 

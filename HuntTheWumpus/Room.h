@@ -3,6 +3,7 @@
 using std::string;
 #include <vector>
 using std::vector;
+#include <sstream>
 
 class Room
 {
@@ -19,6 +20,9 @@ public:
 	void setNum(const int& num) { _roomNum = num; }
 	void setHazard(const string& str) { _hazard = str; }
 	void setConnections(const vector<int>& con) { _connections = con; }
+	void appendConnections(const int& num) { _connections.push_back(num); }
+
+	friend std::ostream& operator<<(std::ostream& out, const Room& object) { out << "Name " << object._roomNum << "\tConnections: "; for (auto n : object._connections) { out << n << " "; } return out; }
 
 private:
 	vector<int> _connections;
