@@ -79,10 +79,11 @@ vector<Room> shuffleRooms(const int & size, const mt19937 & seed,const vector<Ro
 	vector<int> range;
 	for (int i = 1; i < size + 1; i++) { range.push_back(i); }
 	std::shuffle(range.begin(), range.end(), std::default_random_engine(seed));
-
-	for (int i = 1; i < size + 1; i++) {
-
+	vector<Room> shuffledRooms = rooms;
+	for (int i = 0; i < size; i++) {
+		shuffledRooms.at(i).setName(std::to_string(range.at(i)));
 	}
+	return shuffledRooms;
 }
 
 void CaveSystem::generateCave() {
@@ -96,4 +97,7 @@ void CaveSystem::generateCave() {
 	for (int i = 1; i < _size + 1; i++) { range.push_back(i); }
 
 	vector<Room> shuffledRooms = shuffleRooms(_size,generator,createDummyRooms(_size));
+	for (auto n : shuffledRooms) {
+		std::cout << n << std::endl;
+	}
 }

@@ -5,6 +5,8 @@ using std::string;
 using std::vector;
 #include <sstream>
 
+#include <iomanip>;
+
 class Room
 {
 public:
@@ -16,17 +18,19 @@ public:
 	const int readNum() { return _roomNum; }
 	const string readHazard() { return _hazard; }
 	const vector<int> readConnections() { return _connections; }
+	const string readName() { return _roomName; }
 
 	void setNum(const int& num) { _roomNum = num; }
 	void setHazard(const string& str) { _hazard = str; }
 	void setConnections(const vector<int>& con) { _connections = con; }
 	void appendConnections(const int& num) { _connections.push_back(num); }
+	void setName(const string& str) { _roomName = str; }
 
-	friend std::ostream& operator<<(std::ostream& out, const Room& object) { out << "Name " << object._roomNum << "\tConnections: "; for (auto n : object._connections) { out << n << " "; } return out; }
+	friend std::ostream& operator<<(std::ostream& out, const Room& object) { out << "Name: " << std::setw(3) << object._roomName << "\tIndex: " << std::setw(3) << object._roomNum << "\tConnections: "; for (auto n : object._connections) { out << std::setw(3) << n << " "; } return out; }
 
 private:
 	vector<int> _connections;
-	//string _roomName;
+	string _roomName;
 	int _roomNum;
 	string _hazard;
 };
