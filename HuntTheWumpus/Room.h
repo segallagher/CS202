@@ -26,6 +26,7 @@ public:
 
 private:
 	vector<int> _connections;
+	//string _roomName;
 	int _roomNum;
 	string _hazard;
 };

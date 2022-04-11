@@ -9,10 +9,14 @@ class CaveSystem
 {
 public:
 	CaveSystem() : _size(20) {}
-	CaveSystem(const int & num) : _size(num) {}
+	//CaveSystem(const int & num) : _size(num) {}
 	~CaveSystem() {}
 
 	void generateCave();
+
+	int returnSize() { return _size; }
+	vector<Room> returnCave() { return _cave; }
+
 private:
 	int _size;
 	vector<Room> _cave;
