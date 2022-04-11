@@ -1,5 +1,8 @@
 #pragma once
 #include <iostream>
+#include <string>
+using std::string;
+
 class Box
 {
 public:
@@ -7,6 +10,7 @@ public:
 	Box(const int& w) : _width(w), _height(w) {}
 	Box(const int& w, const int& h) : _width(w), _height(h) {}
 	virtual void draw() const = 0;
+	virtual string type() = 0;
 
 	int get_width() const { return _width; }
 	int get_height() const { return _height; }
