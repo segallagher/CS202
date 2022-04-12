@@ -187,9 +187,15 @@ void CaveSystem::move(const string& input) {
 	}
 }
 
+void CaveSystem::shoot(const string& input) {
+	std::cout << "Where do you aim? ";
+	string motion;
+	std::getline(std::cin, motion, '\n');
+}
+
 void CaveSystem::processAction(const string & input) {
 	if (input == "s") {
-
+		shoot(input);
 	}
 	else if (input == "m") {
 		move(input);
@@ -224,7 +230,7 @@ void CaveSystem::nextAction() {
 
 void CaveSystem::displayIntro() {
 	std::cout << "You've come into this cave system looking\nto vanquish the Wumpus\nThere are risks to this hunt though\n1. Bottomless Pits from which you will never escape\n2. Super Bats which will bring you somewhere random\n3. The Wumpus, who if it finds you will eat you\n\nCareful where you shoot however\nfor the wumpus knows the sound of the bowstring\nand you only brought " << _remainingArrows << " arrows\n" << std::endl;
-	
+	std::cout << "You can move by entering M, then you will be\nprompted for where you wish to move.\nYou can shoot by entering S, then you will be\nprompted to enter your targets\nYou have a range of 3 units\nEnter targets in the form 1 or 1-2 or 1-2-3\nWhere 1,2,3 are locations in the cave\nBe careful to know where you are aiming\n" << std::endl;
 }
 
 void CaveSystem::startGame() {
