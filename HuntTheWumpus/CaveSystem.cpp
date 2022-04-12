@@ -148,8 +148,53 @@ void CaveSystem::displayHazards() {
 	}
 }
 
-void processAction() {
+void CaveSystem::move(const string& input) {
 
+	std::cout << "Where to? ";
+	string motion;
+	std::getline(std::cin, motion, '\n');
+
+	try {
+		std::stoi(motion);
+	}
+	catch (std::invalid_argument) {
+		std::cout << "Please enter a valid input.\n" << std::endl;
+		return;
+	}
+
+
+	vector<int> vec;
+	for (auto n : _cave.at(_playerLocation - 1).readConnections()) {
+		vec.push_back(std::stoi(_cave.at(n - 1).readName()));
+	}
+	std::vector<int>::iterator it;
+	it = std::find(vec.begin(), vec.end(), std::stoi(motion));
+
+	if (it != vec.end()) {
+		int targetLocation;
+		for (auto n : _cave) {
+			if (n.readName() == motion) {
+				targetLocation = n.readNum();
+			}
+		}
+		setPlayerPosition(targetLocation);
+		std::cout << std::endl;
+		return;
+	}
+	else {
+		std::cout << "Enter valid Input" << std::endl;
+		processAction(input);
+	}
+}
+
+void CaveSystem::processAction(const string & input) {
+	if (input == "s") {
+
+	}
+	else if (input == "m") {
+		move(input);
+	}
+	return;
 }
 
 string CaveSystem::promptAction() {
@@ -174,7 +219,7 @@ string CaveSystem::promptAction() {
 
 void CaveSystem::nextAction() {
 	displayHazards();
-	promptAction();
+	processAction(promptAction());
 }
 
 void CaveSystem::displayIntro() {

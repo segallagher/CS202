@@ -25,7 +25,13 @@ private:
 	void locateCharacters();
 	void displayHazards();
 	string promptAction();
+	void processAction(const string&);
 	void nextAction();
+	void move(const string&);
+	void shoot(const string&);
+
+	void setPlayerPosition(const int& num) { _playerLocation = num; }
+	void setWumpusPosition(const int& num) { _wumpusLocation = num; }
 
 	int _size;
 	vector<Room> _cave;
