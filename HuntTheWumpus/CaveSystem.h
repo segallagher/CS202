@@ -13,8 +13,8 @@ public:
 	~CaveSystem() {}
 
 	void generateCave();
-	void nextAction();
 	void displayIntro();
+	void startGame();
 
 	void debugPrintCave();
 
@@ -23,10 +23,15 @@ public:
 
 private:
 	void locateCharacters();
+	void displayHazards();
+	string promptAction();
+	void nextAction();
 
 	int _size;
 	vector<Room> _cave;
 
+	// (true = playing, false = gameOver), (true = win, false = lose)
+	std::pair<bool, bool> _gameState;
 	int _wumpusLocation;
 	int _playerLocation;
 	int _remainingArrows;

@@ -6,4 +6,5 @@ int main()
 	CaveSystem a;
 	a.generateCave();
 	a.displayIntro();
+	a.startGame();
 }

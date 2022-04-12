@@ -126,19 +126,66 @@ void CaveSystem::generateCave() {
 
 	_cave = populateCave(_size, generator, shuffleRooms(_size,generator,createDummyRooms(_size)), numPits, numBats);
 	locateCharacters();
+	_gameState = std::make_pair(true, true);
+
 	debugPrintCave();
 
 }
 
+void CaveSystem::displayHazards() {
+	vector<int> connections = _cave.at(_playerLocation-1).readConnections();
+	for (auto n : connections) {
+		if (_cave.at(n-1).readHazard() == "bats") {
+			std::cout << "You hear the screeches of bats" << std::endl;
+		}
+		else if (_cave.at(n-1).readHazard() == "pit") {
+			std::cout << "You feel a breeze" << std::endl;
+		}
+		else if (_cave.at(n-1).readHazard() == "wumpus") {
+			std::cout << "You smell a wumpus" << std::endl;
+		}
+		
+	}
+}
 
-
-void CaveSystem::nextAction() {
+void processAction() {
 
 }
 
-void CaveSystem::displayIntro() {
-	std::cout << "You've come into this cave system looking\nto vanquish the Wumpus\nThere are risks to this hunt though\n1. Bottomless Pits from which you will never escape\n2. Super Bats which will bring you somewhere random\n3. The Wumpus, who if it finds you will eat you\n\nCareful where you shoot however\nfor the wumpus knows the sound of the bowstring\nand you only brought " << _remainingArrows << " arrows" << std::endl;
+string CaveSystem::promptAction() {
+	std::cout << "You are in room " << _cave.at(_playerLocation - 1).readName() << ".\nTunnels lead to ";
+	for (int i = 0; i < _cave.at(_playerLocation - 1).readConnections().size(); i++) {
+		std::cout << _cave.at(_cave.at(_playerLocation - 1).readConnections().at(i) - 1).readName();
+		if(i < _cave.at(_playerLocation - 1).readConnections().size() - 1){std::cout << ", "; }
+	}
+	std::cout << "." << std::endl;
+	std::cout << "Shoot or Move (S-M)? ";
+	string input;
+	std::getline(std::cin, input,'\n');
+
+	string dummy;
+	for (auto n : input) { dummy.push_back(std::tolower(n)); }
+	input = dummy;
 	
+	if (input == "s") { return input; }
+	else if (input == "m") { return input; }
+	return "";
+}
+
+void CaveSystem::nextAction() {
+	displayHazards();
+	promptAction();
+}
+
+void CaveSystem::displayIntro() {
+	std::cout << "You've come into this cave system looking\nto vanquish the Wumpus\nThere are risks to this hunt though\n1. Bottomless Pits from which you will never escape\n2. Super Bats which will bring you somewhere random\n3. The Wumpus, who if it finds you will eat you\n\nCareful where you shoot however\nfor the wumpus knows the sound of the bowstring\nand you only brought " << _remainingArrows << " arrows\n" << std::endl;
+	
+}
+
+void CaveSystem::startGame() {
+	while (_gameState.first == true) {
+		nextAction();
+	}
 }
 
 void CaveSystem::debugPrintCave() {
