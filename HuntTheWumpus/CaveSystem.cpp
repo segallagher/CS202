@@ -86,18 +86,65 @@ vector<Room> shuffleRooms(const int & size, const mt19937 & seed,const vector<Ro
 	return shuffledRooms;
 }
 
+void placeHazardType(const int & size, mt19937& seed, const int & count, vector<Room> & output,const string & type) {
+	std::uniform_int_distribution<int> dist{ 0, size - 1 };
+	int tmp = 0;
+	while (tmp < count) {
+		int a = dist(seed);
+		if (output.at(a).readHazard() == "") {
+			output.at(a).setHazard(type);
+			tmp++;
+		}
+	}
+}
+
+void CaveSystem::locateCharacters() {
+	for (auto n : _cave) {
+		if (n.readHazard() == "wumpus") { _wumpusLocation = n.readNum(); }
+		else if (n.readHazard() == "player") { _playerLocation = n.readNum(); }
+	}
+}
+
+vector<Room> populateCave(const int& size, mt19937& seed, const vector<Room>& rooms, const int & numPits, const int & numBats) {
+	vector<Room> output = rooms;
+	std::uniform_int_distribution<int> dist{ 0, size-1};
+	placeHazardType(size, seed, numPits, output, "pit");
+	placeHazardType(size, seed, numBats, output, "bats");
+	placeHazardType(size, seed, 1, output, "wumpus");
+	placeHazardType(size, seed, 1, output, "player");
+	return output;
+}
+
 void CaveSystem::generateCave() {
+	int numPits = 2;
+	int numBats = 2;
+
 	//allows for generating random number between 1 and _size with dist(generator)
 	random_device rd;
 	mt19937 generator{rd()};
 	std::uniform_int_distribution<int> dist{ 1, _size };
 
-	//creates range of available values, numbers will be removed as availability is taken up
-	vector<int> range;
-	for (int i = 1; i < _size + 1; i++) { range.push_back(i); }
+	_cave = populateCave(_size, generator, shuffleRooms(_size,generator,createDummyRooms(_size)), numPits, numBats);
+	locateCharacters();
+	debugPrintCave();
 
-	vector<Room> shuffledRooms = shuffleRooms(_size,generator,createDummyRooms(_size));
-	for (auto n : shuffledRooms) {
+}
+
+
+
+void CaveSystem::nextAction() {
+
+}
+
+void CaveSystem::displayIntro() {
+	std::cout << "You've come into this cave system looking\nto vanquish the Wumpus\nThere are risks to this hunt though\n1. Bottomless Pits from which you will never escape\n2. Super Bats which will bring you somewhere random\n3. The Wumpus, who if it finds you will eat you\n\nCareful where you shoot however\nfor the wumpus knows the sound of the bowstring\nand you only brought " << _remainingArrows << " arrows" << std::endl;
+	
+}
+
+void CaveSystem::debugPrintCave() {
+	for (auto n : _cave) {
 		std::cout << n << std::endl;
 	}
+	std::cout << "Wumpus Location: " << std::setw(3) << _wumpusLocation << std::endl;
+	std::cout << "Player Location: " << std::setw(3) << _playerLocation << std::endl;
 }

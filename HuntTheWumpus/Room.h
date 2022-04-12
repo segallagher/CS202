@@ -26,7 +26,7 @@ public:
 	void appendConnections(const int& num) { _connections.push_back(num); }
 	void setName(const string& str) { _roomName = str; }
 
-	friend std::ostream& operator<<(std::ostream& out, const Room& object) { out << "Name: " << std::setw(3) << object._roomName << "\tIndex: " << std::setw(3) << object._roomNum << "\tConnections: "; for (auto n : object._connections) { out << std::setw(3) << n << " "; } return out; }
+	friend std::ostream& operator<<(std::ostream& out, const Room& object) { out << "Name: " << std::setw(3) << object._roomName << "\tIndex: " << std::setw(3) << object._roomNum << "\tHazard: " << std::setw(6) << object._hazard << "\tConnections: "; for (auto n : object._connections) { out << std::setw(3) << n << " "; } return out; }
 
 private:
 	vector<int> _connections;

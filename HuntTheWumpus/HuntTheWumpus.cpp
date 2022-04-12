@@ -5,4 +5,5 @@ int main()
 {
 	CaveSystem a;
 	a.generateCave();
+	a.displayIntro();
 }
