@@ -7,4 +7,5 @@ int main()
 	a.generateCave();
 	a.displayIntro();
 	a.startGame();
+	a.waitTillPress();
 }
