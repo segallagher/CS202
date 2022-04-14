@@ -9,7 +9,6 @@ class CaveSystem
 {
 public:
 	CaveSystem() : _size(20),_remainingArrows(5) {}
-	//CaveSystem(const int & num) : _size(num) {}
 	~CaveSystem() {}
 
 	void generateCave();
@@ -29,9 +28,13 @@ private:
 	void nextAction();
 	void move(const string&);
 	void shoot(const string&);
+	bool checkShot(const int&);
+	void checkHazard();
+	int nameToIndex(const string&);
+	void moveWumpus();
 
 	void setPlayerPosition(const int& num) { _playerLocation = num; }
-	void setWumpusPosition(const int& num) { _wumpusLocation = num; }
+	void setWumpusPosition(const int& num);
 
 	int _size;
 	vector<Room> _cave;
@@ -41,5 +44,7 @@ private:
 	int _wumpusLocation;
 	int _playerLocation;
 	int _remainingArrows;
+
+	mt19937 _seed;
 };
 
