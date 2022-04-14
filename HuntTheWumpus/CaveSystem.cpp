@@ -129,8 +129,6 @@ void CaveSystem::generateCave() {
 	locateCharacters();
 	_gameState = std::make_pair(true, true);
 
-	debugPrintCave();
-
 }
 
 void CaveSystem::displayHazards() {
@@ -218,15 +216,7 @@ void CaveSystem::moveWumpus() {
 	std::uniform_int_distribution<int> range{ 0, 2 };
 	int offset = range(_seed);
 	vector<int> targets = _cave.at(_wumpusLocation - 1).readConnections();
-
-	std::cout << "Wumpus targets ";
-	for (auto n : targets) {
-		std::cout << n << " ";
-	}
-	std::cout << std::endl;
-	std::cout << "New Location: " << targets.at(offset) << std::endl;
 	setWumpusPosition(targets.at(offset));
-	debugPrintCave();
 
 }
 
@@ -279,12 +269,18 @@ void CaveSystem::shoot(const string& input) {
 		std::cout << "You cant shoot that far." << std::endl;
 		return;
 	}
-
+	_remainingArrows--;
+	if (_remainingArrows < 0) {
+		std::cout << "You reach for an arrow and find nothing\nNow you can only wait until the Wumpus finds you.";
+		_gameState = std::make_pair(false, false);
+	}
+	std::cout << "You count your arrows and find you have " << _remainingArrows << " left" << std::endl;
 	if (checkShot(_cave.at(nameToIndex(std::to_string(targets.at(0))) - 1).readNum())) {
-		std::cout << "Hit" << std::endl;
+		std::cout << "Your arrow lands true!\nYou have vanquished the beast!" << std::endl;
+		_gameState = std::make_pair(false, true);
 	}
 	else {
-		std::cout << "Miss" << std::endl;
+		std::cout << "Your arrow clatters, you hear the Wumpus shifting" << std::endl;
 		moveWumpus();
 	}
 #if 0
