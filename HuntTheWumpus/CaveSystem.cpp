@@ -270,7 +270,7 @@ void CaveSystem::shoot(const string& input) {
 		return;
 	}
 	_remainingArrows--;
-	if (_remainingArrows < 0) {
+	if (_remainingArrows < 1) {
 		std::cout << "You reach for an arrow and find nothing\nNow you can only wait until the Wumpus finds you.";
 		_gameState = std::make_pair(false, false);
 	}

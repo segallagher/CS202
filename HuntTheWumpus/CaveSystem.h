@@ -16,6 +16,7 @@ public:
 	void startGame();
 
 	void debugPrintCave();
+	void waitTillPress() { std::cout << "Press ENTER to exit game."; std::cin.get(); }
 
 	int returnSize() { return _size; }
 	vector<Room> returnCave() { return _cave; }
