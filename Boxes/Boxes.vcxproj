@@ -139,9 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BoxTest.cpp" />
     <ClCompile Include="CheckeredBox.cpp" />
     <ClCompile Include="FilledBox.cpp" />
-    <ClCompile Include="Boxes.cpp" />
     <ClCompile Include="HollowBox.cpp" />
     <ClCompile Include="Box.cpp" />
   </ItemGroup>
@@ -149,7 +149,7 @@
     <ClInclude Include="CheckeredBox.h" />
     <ClInclude Include="FilledBox.h" />
     <ClInclude Include="HollowBox.h" />
-    <ClInclude Include="Box.h" />
+    <ClInclude Include="Box.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

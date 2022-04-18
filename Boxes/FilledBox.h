@@ -1,5 +1,6 @@
 #pragma once
-#include "Box.h"
+#include "Box.hpp"
+
 class FilledBox : public Box
 {
 public:
@@ -7,6 +8,8 @@ public:
 	FilledBox(const int& w) : Box(w) {}
 	FilledBox(const int& w, const int& h) : Box(w, h) {}
 	~FilledBox(){}
-	void draw() const;
+	std::ostream& print(std::ostream&) const override;
+	string type() const override { return "Filled"; }
+
 };
 

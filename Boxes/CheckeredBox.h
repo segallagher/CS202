@@ -1,5 +1,5 @@
 #pragma once
-#include "Box.h"
+#include "Box.hpp"
 #include <string>
 class CheckeredBox :
     public Box
@@ -9,6 +9,7 @@ public:
 	CheckeredBox(const int& w) : Box(w) {}
 	CheckeredBox(const int& w, const int& h) : Box(w, h) {}
 	~CheckeredBox() {}
-	void draw() const;
+	std::ostream& print(std::ostream&) const override;
+	string type() const override { return "Checkered"; }
 };
 

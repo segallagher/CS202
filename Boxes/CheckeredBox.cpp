@@ -1,11 +1,12 @@
 #include "CheckeredBox.h"
 
-void CheckeredBox::draw() const{
+std::ostream& CheckeredBox::print(std::ostream& os) const{
 	std::string characters = "x ";
-	for (int k = 0; k < get_height(); k++) {
-		for (int i = 0; i < get_width(); i++) {
-			std::cout << characters.at((i % 2 + k % 2) % 2);
+	for (int k = 0; k < getHeight(); k++) {
+		for (int i = 0; i < getWidth(); i++) {
+			os << characters.at((i % 2 + k % 2) % 2);
 		}
-		std::cout << std::endl;
+		os << '\n';
 	}
+	return os;
 }

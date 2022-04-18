@@ -1,9 +1,10 @@
 #include "FilledBox.h"
-void FilledBox::draw() const {
-	for (int h = 0; h < get_height(); h++) {
-		for (int w = 0; w < get_width(); w++) {
-			std::cout << '*';
+std::ostream& FilledBox::print(std::ostream& a ) const {
+	for (int h = 0; h < getHeight(); h++) {
+		for (int w = 0; w < getWidth(); w++) {
+			a << '*';
 		}
-		std::cout << std::endl;
+		a << '\n';
 	}
+	return a;
 }
