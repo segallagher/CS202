@@ -1,4 +1,7 @@
 #pragma once
+#ifndef MYREADWRITE_HPP
+#define MYREADWRITE_HPP
+
 
 #include <fstream>
 #include <vector>
@@ -13,3 +16,5 @@ template<typename T>
 void myWrite(std::ostream& ofile,const T &writeT) {
 	ofile.write(reinterpret_cast<const char*>(&writeT), sizeof(writeT));
 }
+
+#endif
