@@ -14,7 +14,6 @@
 #include "HollowBox.h"
 #include "CheckeredBox.h"
 
-
 std::unique_ptr<Box> boxFactory(char c, int w, int h) {
     if (c == 'f') {
         std::unique_ptr<Box> a(new FilledBox(w, h));

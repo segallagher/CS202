@@ -16,9 +16,11 @@ public:
 	Box(const int& w, const int& h) : _width(w), _height(h) {}
 	virtual string type() const = 0;
 	virtual std::ostream& print(std::ostream&) const = 0;
-	virtual ~Box() = 0;
-
-	friend std::ostream& operator<<(std::ostream& out, const Box& object) {return object.print(out);}
+	~Box() {}
+	// cannot change "const Box& object" to "const Box* object" as BoxTest.cpp gives "const Box& object"
+	friend std::ostream& operator<<(std::ostream& out, const Box& object) {
+		auto sPtr = std::make_shared<Box>();
+		return sPtr->print(out);}//return object->print(out);}
 
 	int getWidth() const { return _width; }
 	int getHeight() const { return _height; }

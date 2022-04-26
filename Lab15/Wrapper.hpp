@@ -10,7 +10,7 @@ public:
 	Wrapper(const T& data) : _data(data) {}
 	~Wrapper(){}
 
-	template<typename T>
+	//template<typename T>
 	friend std::ostream& operator<< (std::ostream& out, const Wrapper<T>& object) { out << object._data; return out; };
 
 private:
