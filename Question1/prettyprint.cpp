@@ -179,6 +179,11 @@ void twocolumn(vector<string>& paragraphs, const int& lines, const int& spacing,
 
 }
 
+void multicolumn(vector<string>& paragraphs, const int& lines, const int& totalSpacing, const int& columns = 2, const int& margin = 2) {
+	const int spacing = std::floor( (double)(totalSpacing - (margin * (columns - 1))) / (double)columns);
+	twocolumn(paragraphs, lines, spacing, margin, columns);
+}
+
 int main(int argc, char* argv[])
 {
 	string filename = argv[2];
@@ -206,5 +211,12 @@ int main(int argc, char* argv[])
 		int margin = atoi(argv[5]);
 		int columns = atoi(argv[6]);
 		twocolumn(paragraphs, lines, spacing, margin,columns);
+	}
+	else if (string(argv[1]) == "multicolumn" && argc == 7) {
+		int lines = atoi(argv[3]);
+		int spacing = atoi(argv[4]);
+		int margin = atoi(argv[5]);
+		int columns = atoi(argv[6]);
+		multicolumn(paragraphs, lines, spacing, margin, columns);
 	}
 }
